@@ -3,6 +3,12 @@ using System.Collections.Generic;
 
 namespace StudentExercise
 {
+    public class StudentReport
+    {
+        public string StudentName { get; set; }
+        public string ExerciseName { get; set; }
+
+    }
     class Program
     {
         static void Main(string[] args)
@@ -77,7 +83,7 @@ namespace StudentExercise
             {
                 Id = 3,
                 ExerciseName = "Objects",
-                Language = "C#"
+                Language = "JavaScript"
             };
             Exercise Types = new Exercise()
             {
@@ -107,7 +113,8 @@ namespace StudentExercise
             c31.StudentList.Add(Hallie);
             c31.StudentList.Add(Travis);
 
-            foreach (Students student in c31.StudentList) {
+            foreach (Students student in c31.StudentList)
+            {
                 Console.WriteLine($"{student.FirstName} is in this class.");
             }
 
@@ -119,8 +126,9 @@ namespace StudentExercise
             Ro.Cohort = c31;
             c31.InstructorList.Add(Gina);
             Gina.Cohort = c31;
-            
-            foreach (Instructors instructor in c31.InstructorList) {
+
+            foreach (Instructors instructor in c31.InstructorList)
+            {
                 Console.WriteLine($"{instructor.FirstName} is teaching {instructor.Cohort.Name}");
             }
             // Have each instructor assign 2 exercises to each of the students.
@@ -141,7 +149,28 @@ namespace StudentExercise
             Ro.AssignExercise(Hallie, Objects);
             Ro.AssignExercise(Hallie, Types);
 
-            // foreach(Exercise exercise in Student)
+            List<Students> students = new List<Students>() {
+                Rose,
+                Ira,
+                Travis,
+                Hallie
+            };
+            List<Instructors> instructors = new List<Instructors>() {
+                Ro,
+                Gina
+            };
+            List<Cohort> cohort = new List<Cohort>() {
+                c31,
+                c32,
+                c33
+            };
+            List<Exercise> exercises = new List<Exercise>() {
+                Dictionaries,
+                Lists,
+                Types, 
+                Objects
+            };
+
 
 
 
