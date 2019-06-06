@@ -8,6 +8,7 @@ namespace StudentExercise
         static void Main(string[] args)
         {
             Console.WriteLine("Hot dog! Look at you go!");
+            Console.WriteLine(" ");
             // Here we're creating our new Students from our class in Student.cs .
             Students Rose = new Students()
             {
@@ -84,7 +85,7 @@ namespace StudentExercise
                 ExerciseName = "Types",
                 Language = "C#"
             };
-            // Ya gotta make a new cohort buddy before u can utilize that List!!!!
+            // Ya gotta make a new cohort buddy before u can utilize that List method!!!!
             Cohort c31 = new Cohort()
             {
                 Id = 1,
@@ -101,7 +102,6 @@ namespace StudentExercise
                 Name = "Cohort 33"
             };
 
-
             c31.StudentList.Add(Rose);
             c31.StudentList.Add(Ira);
             c31.StudentList.Add(Hallie);
@@ -111,14 +111,40 @@ namespace StudentExercise
                 Console.WriteLine($"{student.FirstName} is in this class.");
             }
 
+            Console.WriteLine(" ");
+
+            // We are adding the instructor object named Ro to the cohort c31. Since both of these entities are joined, we also must add c31 to the object Ro's cohort property. This allows us to access the name of that cohort when we're writing it in our console.
+
             c31.InstructorList.Add(Ro);
-            // Instructors Cohort = ;
+            Ro.Cohort = c31;
             c31.InstructorList.Add(Gina);
+            Gina.Cohort = c31;
             
             foreach (Instructors instructor in c31.InstructorList) {
-                Console.WriteLine($"{instructor.FirstName} is teaching {instructor.Cohort}");
-
+                Console.WriteLine($"{instructor.FirstName} is teaching {instructor.Cohort.Name}");
             }
+            // Have each instructor assign 2 exercises to each of the students.
+            Gina.AssignExercise(Rose, Dictionaries);
+            Gina.AssignExercise(Rose, Lists);
+            Ro.AssignExercise(Rose, Objects);
+            Ro.AssignExercise(Rose, Types);
+            Gina.AssignExercise(Ira, Dictionaries);
+            Gina.AssignExercise(Ira, Lists);
+            Ro.AssignExercise(Ira, Objects);
+            Ro.AssignExercise(Ira, Types);
+            Gina.AssignExercise(Travis, Dictionaries);
+            Gina.AssignExercise(Travis, Lists);
+            Ro.AssignExercise(Travis, Objects);
+            Ro.AssignExercise(Travis, Types);
+            Gina.AssignExercise(Hallie, Dictionaries);
+            Gina.AssignExercise(Hallie, Lists);
+            Ro.AssignExercise(Hallie, Objects);
+            Ro.AssignExercise(Hallie, Types);
+
+            // foreach(Exercise exercise in Student)
+
+
+
         }
     }
 }
