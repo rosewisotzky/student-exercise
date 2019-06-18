@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace StudentExercise
 {
@@ -113,6 +114,11 @@ namespace StudentExercise
             c31.StudentList.Add(Hallie);
             c31.StudentList.Add(Travis);
 
+            Rose.Cohort = c31;
+            Ira.Cohort = c31;
+            Hallie.Cohort = c31;
+            Travis.Cohort = c31;
+
             foreach (Students student in c31.StudentList)
             {
                 Console.WriteLine($"{student.FirstName} is in this class.");
@@ -167,13 +173,27 @@ namespace StudentExercise
             List<Exercise> exercises = new List<Exercise>() {
                 Dictionaries,
                 Lists,
-                Types, 
+                Types,
                 Objects
             };
 
-
-
-
+            List<Exercise> JavaScriptExercise = exercises.Where(e => e.Language == "JavaScript").ToList();
+            foreach (Exercise exercise in JavaScriptExercise)
+            {
+                Console.WriteLine($"{exercise.ExerciseName} is written in {exercise.Language}");
+                // List students in a particular cohort by using the Where() LINQ method.
+                
+            }
+             IEnumerable<Students>StudentsIn31 = students.Where(s => s.Cohort == c31).ToList();
+                Console.WriteLine("These students are in Cohort 31");
+                foreach (var student in StudentsIn31)
+                {
+                    Console.WriteLine($"{student.FirstName} {student.LastName} ");
+                }
         }
+
+
+
     }
 }
+
