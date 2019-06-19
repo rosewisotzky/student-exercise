@@ -186,10 +186,23 @@ namespace StudentExercise
             }
              IEnumerable<Students>StudentsIn31 = students.Where(s => s.Cohort == c31).ToList();
                 Console.WriteLine("These students are in Cohort 31");
-                foreach (var student in StudentsIn31)
+                foreach (Students student in StudentsIn31)
                 {
                     Console.WriteLine($"{student.FirstName} {student.LastName} ");
                 }
+            // List instructors in a particular cohort by using the Where() LINQ method.
+            IEnumerable<Instructors>InstructorsIn31 = instructors.Where(i => i.Cohort == c31).ToList();
+                Console.WriteLine("These instructors are teaching Cohort 31");
+                foreach(Instructors instructor in InstructorsIn31) {
+                    Console.WriteLine($"{instructor.FirstName} {instructor.LastName}");
+                }
+            // Sort the students by their last name.
+            IEnumerable<Students> StudentsByName = students.OrderBy(s => s.LastName);
+            foreach(Students student in students) {
+                Console.WriteLine($"{student.FirstName} {student.LastName}");
+            }
+
+
         }
 
 
