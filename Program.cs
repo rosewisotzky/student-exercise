@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace StudentExercise
 {
@@ -43,6 +44,13 @@ namespace StudentExercise
                 FirstName = "Travis",
                 LastName = "Weitzman",
                 SlackHandle = "@trav"
+            };
+            Students Angus = new Students()
+            {
+                Id = 5,
+                FirstName = "Angus",
+                LastName = "Anguson",
+                SlackHandle = "@Aanguus"
             };
             // Instructors
             Instructors Ro = new Instructors()
@@ -112,6 +120,13 @@ namespace StudentExercise
             c31.StudentList.Add(Ira);
             c31.StudentList.Add(Hallie);
             c31.StudentList.Add(Travis);
+            c33.StudentList.Add(Angus);
+
+            Rose.Cohort = c31;
+            Ira.Cohort = c31;
+            Hallie.Cohort = c31;
+            Travis.Cohort = c31;
+            Angus.Cohort = c33;
 
             foreach (Students student in c31.StudentList)
             {
@@ -134,6 +149,7 @@ namespace StudentExercise
             // Have each instructor assign 2 exercises to each of the students.
             Gina.AssignExercise(Rose, Dictionaries);
             Gina.AssignExercise(Rose, Lists);
+            Garol.AssignExercise(Rose, Objects);
             Ro.AssignExercise(Rose, Objects);
             Ro.AssignExercise(Rose, Types);
             Gina.AssignExercise(Ira, Dictionaries);
@@ -153,7 +169,8 @@ namespace StudentExercise
                 Rose,
                 Ira,
                 Travis,
-                Hallie
+                Hallie,
+                Angus
             };
             List<Instructors> instructors = new List<Instructors>() {
                 Ro,
@@ -167,13 +184,51 @@ namespace StudentExercise
             List<Exercise> exercises = new List<Exercise>() {
                 Dictionaries,
                 Lists,
-                Types, 
+                Types,
                 Objects
             };
 
-
-
+            List<Exercise> JavaScriptExercise = exercises.Where(e => e.Language == "JavaScript").ToList();
+            foreach (Exercise exercise in JavaScriptExercise)
+            {
+                Console.WriteLine($"{exercise.ExerciseName} is written in {exercise.Language}");
+                // List students in a particular cohort by using the Where() LINQ method.
+                
+            }
+             IEnumerable<Students>StudentsIn31 = students.Where(s => s.Cohort == c31).ToList();
+                Console.WriteLine("These students are in Cohort 31");
+                foreach (Students student in StudentsIn31)
+                {
+                    Console.WriteLine($"{student.FirstName} {student.LastName} ");
+                }
+                Console.WriteLine(" ");
+            // List instructors in a particular cohort by using the Where() LINQ method.
+            IEnumerable<Instructors>InstructorsIn31 = instructors.Where(i => i.Cohort == c31).ToList();
+                Console.WriteLine("These instructors are teaching Cohort 31");
+                foreach(Instructors instructor in InstructorsIn31) {
+                    Console.WriteLine($"{instructor.FirstName} {instructor.LastName}");
+                }
+            Console.WriteLine(" ");
+            // Sort the students by their last name.
+            IEnumerable<Students> StudentsByName = students.OrderBy(s => s.LastName);
+            foreach(Students student in students) {
+                Console.WriteLine($"{student.FirstName} {student.LastName}");
+            }
+            Console.WriteLine(" ");
+            // Display any students that aren't working on any exercises (Make sure one of your student instances don't have any exercises. Create a new student if you need to.)
+            IEnumerable<Students> StudentsWithoutExercise = students.Where(s => s.Exercises.Count == 0);
+            foreach(Students student in StudentsWithoutExercise) {
+                Console.WriteLine($"{student.FirstName} has no exercises assigned to them");
+            }
+            // Which student is working on the most exercises? Make sure one of your students has more exercises than the others.
+            Console.WriteLine(" ");
+            // IEnumerable<Students> OverAchievers = students.Single(s => s.Exercises.Count == s.Exercises.Max(s => s.) );
+            // Console.WriteLine($"");
 
         }
+
+
+
     }
 }
+
